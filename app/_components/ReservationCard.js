@@ -1,6 +1,6 @@
+import DeleteReservation from "@/app/_components/DeleteReservation";
 import { PencilSquareIcon } from "@heroicons/react/24/solid";
 import { format, formatDistance, isPast, isToday, parseISO } from "date-fns";
-import DeleteReservation from "@/app/_components/DeleteReservation";
 import Image from "next/image";
 
 export const formatDistanceFromNow = (dateStr) =>
@@ -26,6 +26,7 @@ function ReservationCard({ booking }) {
     <div className="flex border border-primary-800">
       <div className="relative h-32 aspect-square">
         <Image
+          fill
           src={image}
           alt={`Cabin ${name}`}
           className="object-cover border-r border-primary-800"
