@@ -1,8 +1,6 @@
 "use client";
-import Image from "next/image";
-import { updateGuest } from "@/app/_lib/actions";
-import { useFormStatus } from "react-dom";
 import SubmitButton from "@/app/_components/SubmitButton";
+import { updateGuest } from "@/app/_lib/actions";
 
 function UpdateProfileForm({ children, guest }) {
   const { fullName, email, nationality, nationalID, countryFlag } = guest;
