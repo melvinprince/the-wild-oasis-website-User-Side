@@ -2,6 +2,7 @@
 import { isWithinInterval } from "date-fns";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
+import { useReservation } from "@/app/_components/ReservationContext";
 
 function isAlreadyBooked(range, datesArr) {
   return (
@@ -14,27 +15,27 @@ function isAlreadyBooked(range, datesArr) {
 }
 
 function DateSelector({ settings, bookedDates, cabin }) {
-  // CHANGE
-  const regularPrice = 23;
-  const discount = 23;
-  const numNights = 23;
-  const cabinPrice = 23;
-  const range = { from: null, to: null };
-
-  // SETTINGS
+  const { range, setRange, resetRange } = useReservation();
+  const regularPrice = 200;
+  const discount = 20;
+  const numNights =
+    range.from && range.to
+      ? (range.to - range.from) / (1000 * 60 * 60 * 24) + 1
+      : 0;
+  const totalPrice = numNights * (regularPrice - discount);
   const { minBookingLength, maxBookingLength } = settings;
 
   return (
     <div className="flex flex-col justify-between">
-      {/* DayPicker with horizontal styling */}
       <DayPicker
-        className="pt-5 place-self-center"
+        className="place-self-center pt-12"
         mode="range"
-        min={minBookingLength + 1}
-        max={maxBookingLength}
-        fromMonth={new Date()}
-        fromDate={new Date()}
-        toYear={new Date().getFullYear() + 5}
+        selected={range}
+        onSelect={(range) => setRange(range)}
+        disabled={{
+          before: new Date(),
+          after: new Date(new Date().getFullYear() + 5, 11, 31),
+        }}
         captionLayout="dropdown"
       />
 
@@ -53,14 +54,14 @@ function DateSelector({ settings, bookedDates, cabin }) {
             )}
             <span className="">/night</span>
           </p>
-          {numNights ? (
+          {numNights > 0 ? (
             <>
               <p className="bg-accent-600 px-3 py-2 text-2xl">
                 <span>&times;</span> <span>{numNights}</span>
               </p>
               <p>
                 <span className="text-lg font-bold uppercase">Total</span>{" "}
-                <span className="text-2xl font-semibold">${cabinPrice}</span>
+                <span className="text-2xl font-semibold">${totalPrice}</span>
               </p>
             </>
           ) : null}
@@ -69,7 +70,7 @@ function DateSelector({ settings, bookedDates, cabin }) {
         {range.from || range.to ? (
           <button
             className="border border-primary-800 py-2 px-4 text-sm font-semibold"
-            onClick={() => resetRange()}
+            onClick={resetRange}
           >
             Clear
           </button>
