@@ -1,5 +1,6 @@
 import DeleteReservation from "@/app/_components/DeleteReservation";
 import { PencilSquareIcon } from "@heroicons/react/24/solid";
+import { CurrencyDollarIcon } from "@heroicons/react/24/solid";
 import { format, formatDistance, isPast, isToday, parseISO } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
@@ -80,6 +81,21 @@ function ReservationCard({ booking, onDelete }) {
               <PencilSquareIcon className="h-5 w-5 text-primary-600 group-hover:text-primary-800 transition-colors" />
               <span className="mt-1">Edit</span>
             </Link>
+            <Link
+              href={{
+                pathname: `/account/reservations/paynow`,
+                query: {
+                  id,
+                  totalPrice,
+                  numGuests,
+                },
+              }}
+              className="group flex items-center gap-2 uppercase text-xs font-bold text-primary-300 border-b border-primary-800 flex-grow px-3 hover:bg-accent-600 transition-colors hover:text-primary-900"
+            >
+              <CurrencyDollarIcon className="h-5 w-5 text-primary-600 group-hover:text-primary-800 transition-colors" />
+              <span className="mt-1">Pay</span>
+            </Link>
+
             <DeleteReservation bookingId={id} onDelete={onDelete} />
           </>
         ) : (

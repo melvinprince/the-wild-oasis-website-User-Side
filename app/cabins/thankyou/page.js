@@ -1,3 +1,4 @@
+import SubmitButton from "@/app/_components/SubmitButton";
 import Link from "next/link";
 
 export default function Page() {
@@ -11,6 +12,11 @@ export default function Page() {
         className="underline text-xl text-accent-500 inline-block"
       >
         Manage your reservations &rarr;
+      </Link>
+      <br />
+      <br />
+      <Link href={"/account/reservations"}>
+        <SubmitButton>Pay Now and save 10%</SubmitButton>
       </Link>
     </div>
   );
