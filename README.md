@@ -3,7 +3,7 @@
 
 ## Overview
 
-**The Wild Oasis Website - User Side** is a web application designed to provide users with an immersive experience related to nature and wildlife. Built with Next.js and styled using Tailwind CSS, this project offers a modern and responsive interface for users to explore various features and content.
+**The Wild Oasis Website - User Side** is a web application designed to provide users with an immersive experience related to nature and wildlife. Built with Next.js and styled using Tailwind CSS, this project offers a modern and responsive interface for users to explore various features and content. Users can also **reserve accommodations, view their reservations, and make payments online** for a seamless experience.
 
 ## Features
 
@@ -11,12 +11,15 @@
 - **Tailwind CSS**: Implements Tailwind CSS for efficient and responsive styling.
 - **Responsive Design**: Ensures optimal viewing experiences across various devices and screen sizes.
 - **Dynamic Content**: Provides interactive and dynamic content to enhance user engagement.
+- **Reservation System**: Allows users to book accommodations and manage their reservations.
+- **Online Payments**: Secure payment processing for easy transactions.
 
 ## Technologies Used
 
 - **Frontend**: Next.js, React.js
 - **Styling**: Tailwind CSS
 - **Language**: JavaScript
+- **Payment Integration**: Stripe (or other payment gateways as applicable)
 
 ## Installation
 
@@ -46,7 +49,10 @@
 ## Usage
 
 1. **Explore Content**: Navigate through the application to discover various features and content related to nature and wildlife.
-2. **Responsive Design**: Access the application on different devices for a seamless experience.
+2. **Make Reservations**: Select available accommodations and complete the booking process.
+3. **Manage Reservations**: View and update existing reservations as needed.
+4. **Online Payments**: Securely pay for reservations using the integrated payment gateway.
+5. **Responsive Design**: Access the application on different devices for a seamless experience.
 
 ## Contributing
 
