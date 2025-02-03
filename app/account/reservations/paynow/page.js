@@ -2,6 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { markBookingAsPaid } from "@/app/_lib/actions";
 
 export default function PayNowPage() {
   const searchParams = useSearchParams();
@@ -47,6 +48,7 @@ export default function PayNowPage() {
           }}
           onApprove={(data, actions) => {
             return actions.order.capture().then((details) => {
+              markBookingAsPaid(bookingData.id);
               alert(
                 `Transaction completed by ${details.payer.name.given_name}`
               );

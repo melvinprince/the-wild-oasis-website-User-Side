@@ -113,3 +113,34 @@ export async function createBooking(bookingData, formData) {
   revalidatePath(`/cabons/${bookingData.cabinId}`);
   redirect("/cabins/thankyou");
 }
+
+export async function markBookingAsPaid(bookingId) {
+  // Ensure bookingId is a number
+  bookingId = Number(bookingId);
+  if (!bookingId) throw new Error("Invalid booking ID");
+
+  // Authenticate user
+  const session = await auth();
+  if (!session) throw new Error("Not authenticated");
+
+  // Get user's bookings
+  const guestBookings = await getBookings(session.user.guestId);
+  const userBookingIds = guestBookings.map((booking) => booking.id);
+
+  // Check if the user owns this booking
+  if (!userBookingIds.includes(bookingId)) throw new Error("Not authorized");
+
+  // Update the isPaid column
+  const { error } = await supabase
+    .from("bookings")
+    .update({ isPaid: true })
+    .eq("id", bookingId);
+
+  if (error) {
+    throw new Error("Payment status could not be updated");
+  }
+
+  // Revalidate necessary paths
+  revalidatePath("/account/reservations");
+  revalidatePath(`/account/reservations/${bookingId}`);
+}
