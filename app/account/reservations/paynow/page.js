@@ -16,10 +16,14 @@ export default function PayNowPage() {
   console.log(bookingData);
 
   return (
-    <PayPalScriptProvider
+   <div> Payment Removed For Secuuroty Reasons </div>
+  );
+}
+/* 
+ <PayPalScriptProvider
       options={{
         "client-id":
-          "Aa1bBugUjqr-tdTq2VnINa3yVthdrsSEkCbfCAD_RzRA7bB89S-DbOthv2HOZEuVbpVtOyclEwPSeUee",
+          "ADD CLIENT ID HERE",
       }}
     >
       <div>
@@ -57,5 +61,4 @@ export default function PayNowPage() {
         />
       </div>
     </PayPalScriptProvider>
-  );
-}
+*?
